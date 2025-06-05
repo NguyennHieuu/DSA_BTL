@@ -16,10 +16,11 @@ void test_utlis()
 // Sách được mượn nhiều nhất
 /* 
 Tổng quan ý tưởng:
-Duyệt từng phần tử trong danh sách Book và với mỗi phần tử, duyệt toàn bộ danh sách BorrowSlip để đếm số lần mượn của sách đó.
+Duyệt qua tất cả sách trong danh sách chủ đề, đếm số lần mỗi sách được mượn từ danh sách phiếu mượn
+Lưu 3 sách có số lần mượn cao nhất vào mảng TopBook.
 */ 
 int countBookBorrowed(BorrowSlip* slipList, const char* bookID) {
-    int count = 0;
+    int count = 0; // biến đếm số lần mượn
     if (slipList == NULL || bookID == NULL) 
         return 0;
     while (slipList != NULL) {
@@ -61,9 +62,9 @@ void findTop3Books(NodeTopic* topicList, BorrowSlip* slipList) {
     }
 
     printf("Top 3 sach duoc muon nhieu nhat:\n");
-    int printed = 0;
+    int printed = 0; // biến đếm số sách đã hiển thị
     for (int i = 0; i < 3; i++) {
-        if (top3[i].book != NULL && top3[i].count > 0) {
+        if (top3[i].book != NULL && top3[i].count > 0) { // chỉ in các sách hợp lệ 
             printf("%d. %s (ID: %s) - %d lan\n", i + 1,
                    top3[i].book->name,
                    top3[i].book->id,
@@ -79,10 +80,8 @@ void findTop3Books(NodeTopic* topicList, BorrowSlip* slipList) {
 
 // Độc giả mượn nhiều sách nhất
 /* 
-Ý tưởng: Duyệt từng độc giả trong danh sách Reader
-Với mỗi độc giả, duyệt toàn bộ danh sách BorrowSlip:
-So sánh slip.readerID với reader.id
-Cộng dồn số lượng sách từ slip.borrowedBooks
+Duyệt qua danh sách độc giả (Reader), đếm số sách mỗi độc giả mượn từ BorrowSlip
+Lưu 3 độc giả mượn nhiều nhất vào mảng TopReader[3].
 */
 int countBorrowedBooks(BorrowSlip* slipList, const char* readerID) {
     int count = 0;
@@ -149,7 +148,7 @@ void findTop3Readers(Reader* readerList, BorrowSlip* slipList) {
 
 // Tổng số sách đang mượn
 void hienThiBorrowedBooks(BorrowSlip* head) {
-    int count = 0;
+    int count = 0; // biến số sách đang mượn
     BorrowSlip* current = head;
     if (head == NULL) {
         printf("Khong co sach nao dang duoc muon.\n");

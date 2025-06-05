@@ -2,12 +2,12 @@
 #define UTILS_H
 #include<stdio.h>
 #include "member.h" // struct reader        
-#include "book.h" // struct book    
-#include "loan.h" // struct borrow slip
+#include "book.h" // struct book và struct NodeTopic 
+#include "loan.h" // struct borrowSlip
 
 typedef struct {
     Reader* reader;
-    int borrowCount;
+    int borrowCount; // biến đếm số sách mượn
 } TopReader; // Top độc giả mượn sách
 
 typedef struct {
